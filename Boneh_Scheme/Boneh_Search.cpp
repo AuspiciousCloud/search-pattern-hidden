@@ -1,7 +1,7 @@
 //
 // Created by Quinn Sheng on 2020/1/18.
 //
-#include "Search.h"
+#include "Boneh_Search.h"
 
 void HomoMulit(
         pcs_public_key *pk,
