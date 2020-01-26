@@ -2,7 +2,7 @@
 // Created by Quinn Sheng on 2020/1/18.
 //
 
-#include "TokenGen.h"
+#include "Boneh_TGen.h"
 
 vector<string> TokenGen(
         vector<string> searchKws,

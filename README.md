@@ -16,6 +16,8 @@ Implementation of Searchable Encryption Scheme with Search Pattern Hidden.
 
 gcc/g++, GMP(enable c++) and NTL
 
+External: Boneh_Scheme need [libhcs]
+
 ## Prepare Environment
 
 ---
@@ -69,3 +71,5 @@ The cloud server performs search under the help of the auxiliary server.
 Decrypt the encrypted search results.
 
 ---
+
+[libhcs]: https://github.com/tiehuis/libhcs

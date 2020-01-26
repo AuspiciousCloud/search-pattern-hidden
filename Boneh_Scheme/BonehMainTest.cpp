@@ -7,9 +7,10 @@
 #include <iostream>
 #include <vector>
 #include <string>
-#include "Setup.h"
-#include "TokenGen.h"
-#include "Search.h"
+#include "Boneh_Setup.h"
+#include "Boneh_TGen.h"
+#include "Boneh_Search.h"
+#include "Boneh_Decrypt.h"
 
 using namespace std;
 
@@ -18,14 +19,13 @@ int main(int argc, char *argv[]) {
 
     const int polyNum[5] = {420, 700, 874, 1031, 1156};
     const int MaxIdNum[5] = {50, 59, 72, 80, 88};
-    const char *inFile[5] = {"../newtext.001.txt", "../newtext.002.txt", "../newtext.003.txt", "../newtext.004.txt",
-                             "../newtext.005.txt"};
+    const char *inFile[5] = {"newtext.001.txt", "newtext.002.txt", "newtext.003.txt", "newtext.004.txt",
+                             "newtext.005.txt"};
     const char *SearchKey[5] = {"account", "account", "account", "account", "account"};
     const int repeatTime = 10;
     double timeused = 0;
 
     //  Mod
-    ZZZ N;
     pcs_public_key *pk;
     pcs_private_key *vk;
     hcs_random *securityParam = hcs_init_random();
@@ -59,6 +59,7 @@ int main(int argc, char *argv[]) {
 
 //                cout << "token generated" << endl;
 
+                ZZZ* result = new ZZZ[MaxIdNum[pn] * 2 + 1];
                 cout << "searching" << endl;
                 Search((string("Search.out.") + to_string(securitybit[sb]) + "." + to_string(polyNum[pn]) +
                         ".txt").c_str(),
@@ -68,8 +69,13 @@ int main(int argc, char *argv[]) {
                        KeysHashTable,
                        tokens,
                        WordNum, MaxIdNum[pn],
-                       securityParam);
+                       securityParam
+                       result);
+                    //    securityParam);
                 cout << "Searching END" << endl;
+                cout << "Decrypt" << endl;
+                ZZZ* out = new ZZZ[MaxIdNum[pn] * 2 + 1];
+                Decrypt(result, out, vk, MaxIdNum[pn] * 2 + 1);
             }
         }
     }
